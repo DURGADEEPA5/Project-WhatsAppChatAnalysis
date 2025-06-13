@@ -39,7 +39,7 @@ It’s a quick and interactive way to understand chat behaviors in individual or
 ---
 
 ## 📂 Project Structure
-```text
+
 WHATSAPP_CHAT_ANALYZER/
 ├── app.py              # Main Streamlit App
 ├── helper.py           # Chat analysis functions
@@ -48,6 +48,8 @@ WHATSAPP_CHAT_ANALYZER/
 ├── .gitignore          # Git ignore file
 ├── README.md           # Project documentation
 └── images/             # Screenshots
+---
+```text
 
 ## 🖼️ Screenshots
 Dashboard View
@@ -58,8 +60,8 @@ Stats
 ![Stats Screenshot](images/stats.png)
 ![Stats Screenshot](images/image.png)
 
-(You can replace these placeholders with your actual screenshots.)
 
+```
 ## 🛠️ How to Run Locally
 1. Clone the Repository:
 bash
@@ -100,3 +102,4 @@ urlextract
 
 📄 License
 This project is open-source and free to use.
+```text
