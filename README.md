@@ -1,62 +1,55 @@
-📊 WhatsApp Chat Analyzer
-A Streamlit-based app to analyze WhatsApp chat data and visualize user engagement, activity trends, and emoji usage.
-🚀 Project Overview
-This project allows users to upload their WhatsApp chat exports and provides:
+# 📊 WhatsApp Chat Analyzer
+A **Streamlit-based web app** to analyze WhatsApp chat data and visualize user engagement, activity trends, and emoji usage.
 
-Statistical summaries
+---
 
-Timeline visualizations
-
-Word cloud generation
-
-Emoji analysis
-
-User activity insights
+## 🚀 Project Overview
+This project allows users to upload their **WhatsApp chat exports** and provides:
+- 📈 Statistical summaries
+- 🗓 Timeline visualizations
+- ☁️ Word cloud generation
+- 😂 Emoji analysis
+- 🧑‍🤝‍🧑 User activity insights
 
 It’s a quick and interactive way to understand chat behaviors in individual or group conversations.
 
-🔧 Tech Stack
-Frontend: Streamlit (Python Web Framework)
+---
 
-Backend: Python
+## 🔧 Tech Stack
+- **Frontend:** Streamlit (Python Web Framework)
+- **Backend:** Python
+- **Libraries Used:**
+  - `pandas` – Data manipulation
+  - `matplotlib` – Data visualization
+  - `wordcloud` – Word cloud generation
+  - `emoji` – Emoji processing
+  - `urlextract` – URL extraction from messages
 
-Libraries Used:
+---
 
-pandas – Data manipulation
+## ✨ Features
+- 📈 **Chat Statistics:** Total messages, word count, shared links, and media messages.
+- 🗓 **Monthly & Daily Timelines:** Visual representation of chat activity trends.
+- 🗂 **Activity Maps:** Most active days and months.
+- 🧑‍🤝‍🧑 **User Activity:** Busiest user analysis in group chats.
+- ☁️ **Word Cloud:** Most commonly used words visualized.
+- 😂 **Emoji Analysis:** Detailed emoji usage breakdown.
+- 🔗 **Link Extraction:** Displays all shared URLs in the chat.
 
-matplotlib – Data visualization
+---
 
-wordcloud – Word cloud generation
-
-emoji – Emoji processing
-
-urlextract – URL extraction from messages
-
-✨ Features
-📈 Chat Statistics: Total messages, word count, shared links, media messages.
-
-🗓 Monthly & Daily Timelines: Visual representation of chat activity trends.
-
-🗂 Activity Maps: Most active days and months.
-
-🧑‍🤝‍🧑 User Activity: Busiest user analysis in group chats.
-
-☁️ Word Cloud: Most commonly used words visualized.
-
-😂 Emoji Analysis: Detailed emoji usage breakdown.
-
-🔗 Link Extraction: Displays all shared URLs in the chat.
-
-📂 Project Structure
-plaintext
-Copy
-Edit
+## 📂 Project Structure
+```text
+WHATSAPP_CHAT_ANALYZER/
 ├── app.py              # Main Streamlit App
 ├── helper.py           # Chat analysis functions
 ├── preprocessor.py     # Chat preprocessing functions
 ├── requirements.txt    # Required packages
-└── README.md           # Project documentation
-🖼️ Screenshots
+├── .gitignore          # Git ignore file
+├── README.md           # Project documentation
+└── images/             # Screenshots
+
+## 🖼️ Screenshots
 Dashboard View
 ![Dashboard Screenshot](images/dashboard.png)
 ![Dashboard Screenshot](images/image1.png)
@@ -67,7 +60,7 @@ Stats
 
 (You can replace these placeholders with your actual screenshots.)
 
-🛠️ How to Run Locally
+## 🛠️ How to Run Locally
 1. Clone the Repository:
 bash
 Copy
@@ -84,7 +77,7 @@ bash
 Copy
 Edit
 streamlit run app.py
-⚙️ Requirements
+## ⚙️ Requirements
 Here’s what you need to install:
 
 bash
