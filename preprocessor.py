@@ -1,47 +1,50 @@
 import re
+from datetime import datetime
 import pandas as pd
 
-
 def preprocess(data):
-    pattern = r'\d{2}/\d{2}/\d{4}, \d{1,2}:\d{2}\s?[ap]m\s-\s'
+    # Define pattern to match datetime, user, and message
+    pattern = r'^(\d{1,2}/\d{1,2}/\d{2}), (\d{1,2}:\d{2})\u202F?(AM|PM) - (.*?): (.*)'
 
-    # Split the data into messages and dates
-    messages = re.split(pattern, data)[1:]
-    dates = re.findall(pattern, data)
-    # Correct column name
-    df = pd.DataFrame({'user_message': messages, 'message_date': dates})
-# Convert message_date type
-    # Remove leading/trailing spaces
-    df['message_date'] = df['message_date'].str.strip()
-    df['message_date'] = pd.to_datetime(
-        df['message_date'], format='%d/%m/%Y, %I:%M %p -', errors='coerce')
-
-# Optionally rename the column if needed
-    df.rename(columns={'message_date': 'date'}, inplace=True)
-
-    # df.head()
-    users = []
     messages = []
+    dates = []
+    users = []
 
-    for message in df['user_message']:
-        # Attempt to split the message into a user and the actual message
-        # maxsplit=1 ensures we only split on the first colon
-        entry = re.split(r'([\w\W]+?):\s', message, maxsplit=1)
+    lines = data.split('\n')
+    current_message = ''
+    current_date = None
+    current_user = None
 
-        if len(entry) > 2:  # Check if we successfully split into user and message
-            users.append(entry[1])  # Append the username
-            messages.append(entry[2])  # Append the actual message
+    for line in lines:
+        match = re.match(pattern, line)
+        if match:
+            # If there's a previous message, save it
+            if current_date is not None:
+                dates.append(current_date)
+                users.append(current_user)
+                messages.append(current_message.strip())
+
+            # Extract new message
+            date_str = f"{match.group(1)}, {match.group(2)} {match.group(3)}"
+            try:
+                current_date = datetime.strptime(date_str, '%m/%d/%y, %I:%M %p')
+            except:
+                current_date = None
+
+            current_user = match.group(4)
+            current_message = match.group(5)
         else:
-            # If the message doesn't match the format, assign 'Unknown' user
-            users.append('Unknown')
-            messages.append(message)  # Keep the full message as is
+            # Continuation of previous message
+            current_message += '\n' + line
 
-# Add the extracted users and messages to the DataFrame
-    df['user'] = users
-    df['message'] = messages
+    # Save last message
+    if current_date is not None:
+        dates.append(current_date)
+        users.append(current_user)
+        messages.append(current_message.strip())
 
-# Drop the original 'user_message' column
-    df.drop(columns=['user_message'], inplace=True)
+    # Create DataFrame
+    df = pd.DataFrame({'user': users, 'message': messages, 'date': dates})
     df['only_date'] = df['date'].dt.date
     df['year'] = df['date'].dt.year
     df['month_num'] = df['date'].dt.month

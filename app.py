@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 # Title and Author Information
 st.markdown("<h1 style='text-align: center; font-size: 36px;'>Whatsapp Chat Analyzer</h1>",
             unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center;'>Developed by: <b>Chirag Sathish</b></h2>",
+st.markdown("<h2 style='text-align: center;'>Developed by: <b>DD</b></h2>",
             unsafe_allow_html=True)
-st.markdown("<h4 style='text-align: center;'><a href='www.linkedin.com/in/chirag-sathish-87b846271' target='_blank'>LinkedIn Profile</a> | 📧 <a href='mailto:chiru7975@gmail.com'>Email me</a></h4>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: center;'><a href='https://www.linkedin.com/in/durgadeepa-p-889732324/' target='_blank'>LinkedIn Profile</a> | 📧 <a href='mailto:ddpalaneeru5@gmail.com'>Email me</a></h4>", unsafe_allow_html=True)
 
 # Sidebar
 st.sidebar.title("Welcome to Whatsapp Chat Analyzer")
@@ -26,7 +26,9 @@ if uploaded_file is not None:
 
     # Fetch unique users
     user_list = df['user'].unique().tolist()
-    user_list.remove('Unknown')
+    if 'Unknown' in user_list:
+        user_list.remove('Unknown')
+
     user_list.sort()
     user_list.insert(0, "Overall")
     selected_user = st.sidebar.selectbox("Show analysis of", user_list)
